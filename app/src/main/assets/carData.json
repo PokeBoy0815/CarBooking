@@ -1,0 +1,44 @@
+{
+  "cars": [
+    {
+      "id": "car_001",
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "pricePerDay": 49.99,
+      "location": "Berlin",
+      "available": true,
+      "image": "golf",
+      "seats": 5,
+      "transmission": "Manual",
+      "fuel": "Petrol",
+      "description": "Kompakt, sparsam, perfekt für die Stadt."
+    },
+    {
+      "id": "car_002",
+      "brand": "BMW",
+      "model": "3er",
+      "pricePerDay": 89.0,
+      "location": "München",
+      "available": true,
+      "image": "bmw3",
+      "seats": 5,
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "description": "Sportlich und komfortabel für längere Strecken."
+    },
+    {
+      "id": "car_003",
+      "brand": "Tesla",
+      "model": "Model 3",
+      "pricePerDay": 99.0,
+      "location": "Hamburg",
+      "available": false,
+      "image": "tesla3",
+      "seats": 5,
+      "transmission": "Automatic",
+      "fuel": "Electric",
+      "description": "Elektro-Power mit modernem Infotainment."
+    }
+  ],
+  "bookings": []
+}
