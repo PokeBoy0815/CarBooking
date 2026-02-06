@@ -12,10 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.carbooking.ui.theme.CarBookingTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-class CarListActivity : ComponentActivity() {
+class CarListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_car_list)
+
+        val rv = findViewById<RecyclerView>(R.id.rvCars)
+        rv.layoutManager = LinearLayoutManager(this)
+
+        val cars = DataLoader(this).getCars()
+        rv.adapter = CarAdapter(this, cars)
+
+        /*
         enableEdgeToEdge()
         setContent {
             CarBookingTheme {
@@ -27,6 +39,7 @@ class CarListActivity : ComponentActivity() {
                 }
             }
         }
+        */
     }
 }
 
