@@ -7,4 +7,6 @@
     <string name="name">Name</string>
     <string name="enddatum_yyyy_mm_dd">Enddatum (yyyy-MM-dd)</string>
     <string name="startdatum_yyyy_mm_dd">Startdatum (yyyy-MM-dd)</string>
+    <string name="title_activity_booking">BookingActivity</string>
+    <string name="meine_buchungen">Meine Buchungen</string>
 </resources>

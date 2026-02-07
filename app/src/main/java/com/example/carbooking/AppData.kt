@@ -26,3 +26,11 @@ data class Booking(
     val startDate: String,
     val endDate: String
 )
+
+data class BookingDisplayItem(
+    val bookingId: String,
+    val carId: String,
+    val carTitle: String,
+    val customerName: String,
+    val dateRange: String
+)

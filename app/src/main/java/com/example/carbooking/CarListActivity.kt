@@ -2,6 +2,7 @@ package com.example.carbooking
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,11 @@ class CarListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val btnBookings = findViewById<Button>(R.id.btnBookings)
+        btnBookings.setOnClickListener {
+            val intent = Intent(this, BookingsActivity::class.java)
+            startActivity(intent)
+        }
         /*
         enableEdgeToEdge()
         setContent {
