@@ -23,6 +23,6 @@ data class Booking(
     val id: String,
     val carId: String,
     val customerName: String,
-    val startDate: String, // später evtl LocalDate
+    val startDate: String,
     val endDate: String
 )

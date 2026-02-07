@@ -1,9 +1,12 @@
 package com.example.carbooking
 
 import android.os.Bundle
+import android.widget.Button
+import android.content.Intent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlin.jvm.java
 
 class CarDetailsActivity : AppCompatActivity() {
 
@@ -18,7 +21,7 @@ class CarDetailsActivity : AppCompatActivity() {
             return
         }
 
-        val car = DataLoader(this).getCarById(carID)
+        val car = DataHandler(this).getCarById(carID)
         if (car == null) {
             //error message
             finish()
@@ -36,7 +39,17 @@ class CarDetailsActivity : AppCompatActivity() {
 
         val resId = resources.getIdentifier(car?.image, "drawable", packageName)
         if (resId != 0) iv.setImageResource(resId)
+
+
+        val btnBook = findViewById<Button>(R.id.btnDetailBook)
+        btnBook.isEnabled = car.available
+        btnBook.setOnClickListener {
+            val intent = Intent(this, CreateBookingActivity::class.java)
+            intent.putExtra("carId", car.id)
+            startActivity(intent)
         }
 
+
+    }
 
 }

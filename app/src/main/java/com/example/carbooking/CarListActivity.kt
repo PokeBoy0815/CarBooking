@@ -14,7 +14,7 @@ class CarListActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.rvCars)
         rv.layoutManager = LinearLayoutManager(this)
 
-        val cars = DataLoader(this).getCars()
+        val cars = DataHandler(this).getCars()
 
         rv.adapter = CarAdapter(this, cars) { car ->
             val intent = Intent(this, CarDetailsActivity::class.java)

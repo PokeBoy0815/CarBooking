@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CarBooking</string>
+    <string name="buchen">Buchen</string>
+    <string name="ihre_buchung">Ihre Buchung</string>
+    <string name="buchung_abschlie_en">Buchung abschließen</string>
+    <string name="buchung">Buchung</string>
+    <string name="name">Name</string>
+    <string name="enddatum_yyyy_mm_dd">Enddatum (yyyy-MM-dd)</string>
+    <string name="startdatum_yyyy_mm_dd">Startdatum (yyyy-MM-dd)</string>
 </resources>
