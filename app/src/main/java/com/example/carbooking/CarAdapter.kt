@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CarAdapter(
     private val context: Context,
-    private val cars: List<Car>
+    private val cars: List<Car>,
+    private val onCarClick: (Car) -> Unit
 ) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
     inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,6 +38,8 @@ class CarAdapter(
         // Bild aus drawable (später DB) über Namen (später Key) laden
         val resId = context.resources.getIdentifier(car.image, "drawable", context.packageName)
         if (resId != 0) holder.ivCar.setImageResource(resId)
+
+        holder.itemView.setOnClickListener { onCarClick(car) }
     }
 
     // auslesbarmachen der Anzahl an items

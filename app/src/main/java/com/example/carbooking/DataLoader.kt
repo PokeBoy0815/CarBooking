@@ -11,10 +11,12 @@ class DataLoader(private val context: Context) {
     }
 
     fun loadAppData(): AppData {
-        val json = loadJsonFromAssets("data.json")
+        val json = loadJsonFromAssets("carData.json")
         return Gson().fromJson(json, AppData::class.java)
     }
 
     fun getCars(): List<Car> = loadAppData().cars
+
+    fun getCarById(id: String): Car? = loadAppData().cars.find { it.id == id }
 
 }
