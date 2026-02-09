@@ -12,23 +12,19 @@ class CreateBookingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_booking)
 
-        // 1) carId aus Intent lesen
         val carId = intent.getStringExtra("carId") ?: run {
             Toast.makeText(this, "Fehler: carId fehlt.", Toast.LENGTH_LONG).show()
             finish()
             return
         }
 
-        // 2) Views holen
         val etName = findViewById<EditText>(R.id.etName)
         val etStart = findViewById<EditText>(R.id.etStartDate)
         val etEnd = findViewById<EditText>(R.id.etEndDate)
         val btnConfirm = findViewById<Button>(R.id.btnFinishBooking)
 
-        // 3) DataLoader Instanz
         val handler = DataHandler(this)
 
-        // Optional: Button gegen Double-Click schützen
         var isSaving = false
 
         btnConfirm.setOnClickListener {
@@ -38,13 +34,11 @@ class CreateBookingActivity : AppCompatActivity() {
             val start = etStart.text.toString().trim()
             val end = etEnd.text.toString().trim()
 
-            // 4) Minimal-Validierung
             if (name.isEmpty() || start.isEmpty() || end.isEmpty()) {
                 Toast.makeText(this, "Bitte alle Felder ausfüllen.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 5) Speichern starten (Firestore)
             isSaving = true
             btnConfirm.isEnabled = false
 

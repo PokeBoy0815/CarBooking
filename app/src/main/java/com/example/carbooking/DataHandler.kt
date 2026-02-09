@@ -133,10 +133,4 @@ class DataHandler(private val context: Context) {
             .addOnFailureListener { e -> onError(e) }
     }
 
-
-    //fun getBookingByName(name: String): Booking? = loadAppData().bookings.find { it.customerName == name }
-
-
-
-
 }
