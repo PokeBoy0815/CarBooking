@@ -3,47 +3,40 @@ package com.example.carbooking
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.ktx.firestore
 
 class CarListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_list)
 
-        val db = com.google.firebase.ktx.Firebase.firestore
-        println("Firebase ist bereit: ${db.app.name}")
-
         val rv = findViewById<RecyclerView>(R.id.rvCars)
         rv.layoutManager = LinearLayoutManager(this)
 
-        val cars = DataHandler(this).getCars()
+        val handler = DataHandler(this)
 
-        rv.adapter = CarAdapter(this, cars) { car ->
-            val intent = Intent(this, CarDetailsActivity::class.java)
-            intent.putExtra("carId", car.id)
-            startActivity(intent)
-        }
+        handler.getCars(
+            onSuccess = { cars ->
+                rv.adapter = CarAdapter(this, cars) { car ->
+                    val intent = Intent(this, CarDetailsActivity::class.java)
+                    intent.putExtra("carId", car.id)
+                    startActivity(intent)
+                }
+            },
+            onError = { e ->
+                Toast.makeText(this, "Fehler beim Laden der Autos: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        )
 
         val btnBookings = findViewById<Button>(R.id.btnBookings)
         btnBookings.setOnClickListener {
             val intent = Intent(this, BookingsActivity::class.java)
             startActivity(intent)
         }
-        /*
-        enableEdgeToEdge()
-        setContent {
-            CarBookingTheme {
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-        */
     }
+
 }
+
