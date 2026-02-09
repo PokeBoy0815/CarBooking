@@ -6,11 +6,15 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
 
 class CarListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_list)
+
+        val db = com.google.firebase.ktx.Firebase.firestore
+        println("Firebase ist bereit: ${db.app.name}")
 
         val rv = findViewById<RecyclerView>(R.id.rvCars)
         rv.layoutManager = LinearLayoutManager(this)

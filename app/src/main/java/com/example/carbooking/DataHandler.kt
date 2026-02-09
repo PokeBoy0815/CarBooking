@@ -38,6 +38,13 @@ class DataHandler(private val context: Context) {
         prefs.edit().putString("bookings", gson.toJson(current)).apply()
     }
 
+    fun deleteBooking(bookingId: String) {
+        val current = getBookings().toMutableList()
+        val newList = current.filterNot { it.id == bookingId }
+        prefs.edit().putString("bookings", gson.toJson(newList)).apply()
+    }
+
+
     //fun getBookingByName(name: String): Booking? = loadAppData().bookings.find { it.customerName == name }
 
 

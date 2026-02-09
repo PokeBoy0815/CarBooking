@@ -1,6 +1,7 @@
 package com.example.carbooking
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,14 +18,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carbooking.ui.theme.CarBookingTheme
 
 class BookingsActivity : AppCompatActivity() {
+
+    private lateinit var rv: RecyclerView
+    private lateinit var loader: DataHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookings)
 
-        val rv = findViewById<RecyclerView>(R.id.rvBookings)
+        rv = findViewById<RecyclerView>(R.id.rvBookings)
         rv.layoutManager = LinearLayoutManager(this)
 
-        val loader = DataHandler(this)
+        loader = DataHandler(this)
+
+
+        loadAndShowListings()
+    }
+
+    private fun loadAndShowListings() {
+
         val bookings = loader.getBookings()
 
         // booking + car mergen (damit es schön angezeigt wird)
@@ -32,7 +44,7 @@ class BookingsActivity : AppCompatActivity() {
             val car = loader.getCarById(booking.carId)
             val carId = booking.carId
             val carTitle = if (car != null) {
-                "${car.brand} ${car.model} • ${car.location}"
+                "${car.brand} ${car.model} - ${car.location}"
             } else {
                 "Unbekanntes Auto (${booking.carId})"
             }
@@ -46,6 +58,11 @@ class BookingsActivity : AppCompatActivity() {
             )
         }
 
-        rv.adapter = BookingAdapter(displayItems)
+        rv.adapter = BookingAdapter(displayItems) { item ->
+            loader.deleteBooking(item.bookingId)
+            Toast.makeText(this, "Buchung storniert", Toast.LENGTH_SHORT).show()
+            loadAndShowListings()
+        }
     }
+
 }

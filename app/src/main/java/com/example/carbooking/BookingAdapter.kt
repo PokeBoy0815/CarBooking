@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class BookingAdapter(
-    private val items: List<BookingDisplayItem>
+    private val items: List<BookingDisplayItem>,
+    private val onLongPress: (BookingDisplayItem) -> Unit
 ) : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
 
     inner class BookingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -26,6 +27,11 @@ class BookingAdapter(
         holder.tvCarTitle.text = item.carTitle
         holder.tvCustomer.text = "Name: ${item.customerName}"
         holder.tvDateRange.text = "Zeitraum: ${item.dateRange}"
+
+        holder.itemView.setOnLongClickListener {
+            onLongPress(item)
+            true
+        }
     }
 
     override fun getItemCount(): Int = items.size
